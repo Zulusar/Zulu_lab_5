@@ -39,7 +39,9 @@ export class Game<T extends GameType> {
     clone(): Game<T> {
         // TODO
         // Функция должна вернуть копию объекта
-        return this 
+        let newSteps: State<T>[] = []
+        newSteps.push(this.steps[this.current].clone())
+        return new Game (newSteps, this.input, this.boardParam) 
     }
 
     move(index: number): boolean {
@@ -58,7 +60,10 @@ export class Game<T extends GameType> {
         }
         else{
             this.state.board.move(index, this.input.sym)
+            this.steps.push(this.state.clone())
             this.input.move()
+            this.toStep
+            this.current++
             GameVC.draw() 
             return true
         }
@@ -69,6 +74,15 @@ export class Game<T extends GameType> {
         // Проверяет, что в steps есть элемент с индексом step,
         //  если нет то возвращает false
         // Делает current равным step и обновляет свойство cell в board
-        return true  
-    }
+        if (this.steps.length<step) { //проверка на возможность возврата к ходу
+            return false
+        }
+        else {
+            this.steps[0] = this.steps[step].clone()
+            if(step % 2 != 0) this.input.move()//подбор нужного символа в зависимости от step
+            GameVC.draw()
+            this.current == step //переписывание счетчика
+            return true
+        }        
+    } 
 }

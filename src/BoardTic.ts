@@ -21,7 +21,11 @@ export class BoardTic extends Board<GameTic> {
         // Функция должна вернуть копию объекта
         // Если init, то дополнительно инициализируются
         //  статические поля класса
-        return this
+        let newBoard = new BoardTic()//клонирование игры
+        for(let i=0; i<this.cells.length; i++){//по-другому не получается
+            newBoard.cells[i] = this.cells[i]
+        }
+        return newBoard
     }
 
     private getLineChar(line: number[]): string[] {

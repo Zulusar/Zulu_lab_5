@@ -8,6 +8,9 @@ import { State } from "./State"
 import { Sym } from "./Sym"
 import { SymTic } from "./SymTic"
 
+let forKeys: string[] = []
+let i = 0
+
 type Saving = {
     key: string
     game: Game<GameType>
@@ -99,16 +102,23 @@ export class Site {
     save() {
         // TODO
         // сохраняет текущую игру в массив Games
+        const newKeys: Saving = {key: new Date().toLocaleString(), game: this.game.clone()}
+        this.games.push(newKeys)
+        this.keys()
     }
 
     load(index: number) {
         // TODO
         // загружает игру по ее индексу в массиве
+        return this.game = this.games[index].game.clone()
     }
 
     keys(): string[] {
         // TODO
         // вовзращает список ключей игр из массива Games
-        return []
+        forKeys.push(this.games[i].key)
+        i++
+        return forKeys
+        //return []
     }
 }

@@ -17,6 +17,7 @@ export class State<T extends GameType> {
     clone(): State<T>{
         // TODO
         // Функция должна вернуть копию объекта
-        return this
+        let newState = new State (this.board.clone(), this.sym)//клонирование состояния
+        return newState
     }
 }

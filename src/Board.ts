@@ -24,7 +24,7 @@ export abstract class Board<T extends GameType>{
         // При наличии row или col 
         //  инициализировать соответсвующие поля
         // Инициализировать массив cells
-        this.cells = [new Sym<T>]
+        this.cells = []
         if(typeof(row) == "number" && typeof(col) == "number" && row == 3) {//инициализация для Tic
             let multiplication = row*col
             for(let i = 0; i < multiplication; i++){
