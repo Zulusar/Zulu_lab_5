@@ -52,11 +52,16 @@ export class Game<T extends GameType> {
         //  функция должна вывести предупреждение с помощью alert        
         // Нужно учесть, что если вызывалась функция toStep, то 
         //  current можно указывать не на последний элемент steps
-        this.state.board.cells[index] = this.input.sym
-        this.state.sym = this.input.sym
-        this.input.move()
-        GameVC.draw() 
-        return true
+        this.state.board.status()
+        if (this.state.board.status() != "Идет игра"){
+            return false
+        }
+        else{
+            this.state.board.move(index, this.input.sym)
+            this.input.move()
+            GameVC.draw() 
+            return true
+        }
     }
 
     toStep(step: number) {

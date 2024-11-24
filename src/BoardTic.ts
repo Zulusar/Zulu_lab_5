@@ -48,14 +48,23 @@ export class BoardTic extends Board<GameTic> {
         // Если имеется комбинация из трех одинаковых символов "X" или "0" 
         //  в линию - возвращает этот символ
         // Иначе возвращает символ "_"
-        return "_"
+        let data = "_"
+        for(let i = 0; i < BoardTic.winPos.length; i++){
+            if (this.getLineChar(BoardTic.winPos[i])[0] == this.getLineChar(BoardTic.winPos[i])[1]  && this.getLineChar(BoardTic.winPos[i])[0] == this.getLineChar(BoardTic.winPos[i])[2]&& this.getLineChar(BoardTic.winPos[i])[0] != "_") {
+                data = this.getLineChar(BoardTic.winPos[i])[0]
+                break
+            }
+            else  data = "_"   
+        }
+        return data
     }
 
     override status(): string {
         // TODO
         // возвращает либо строку с результатом игры, либо, 
         //   если игра не закончена, вызывает status родителя.
-        return ""
+        if(this.checkWin()!= "_") return `Победил ${this.checkWin()}`
+        else return super.status()//на случай победы 
     }
 }
 
