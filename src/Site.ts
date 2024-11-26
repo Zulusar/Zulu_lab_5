@@ -68,6 +68,7 @@ export class Site {
                     index = i
             if (index >= 0)
                 this.load(index)
+                GameVC.load(this.load(index))
         }
 
         const ops = boardChoose.options
@@ -103,8 +104,9 @@ export class Site {
     save() {
         // TODO
         // сохраняет текущую игру в массив Games
-        const newKeys: Saving = {key: new Date().toLocaleString(), game: this.game.clone()}
-        this.games.push(newKeys)
+        //const newKeys: Saving = {key: new Date().toLocaleString(), game: this.game.clone()}
+        this.games.push({key: new Date().toLocaleString(), game: this.game.clone()})
+        this.fillGames()
         this.keys()
     }
 
@@ -117,9 +119,8 @@ export class Site {
     keys(): string[] {
         // TODO
         // вовзращает список ключей игр из массива Games
-        forKeys.push(this.games[i].key)
-        i++
+        //forKeys.push(this.games[i].key)
+        //i++
         return forKeys
-        //return []
     }
 }
