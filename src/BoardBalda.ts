@@ -1,6 +1,8 @@
 import { Board, BoardParam } from "./Board"
 import { Sym } from "./Sym"
 
+let a = 0
+
 export class BoardBalda extends Board<GameBalda> {
     constructor(
         str: string | Sym<GameBalda>[] = "балда",
@@ -11,14 +13,23 @@ export class BoardBalda extends Board<GameBalda> {
         // Вызывает родительский конструктор,
         //  если init, то дополнительно инициализируются
         //  статические поля класса
-        super({} as Sym<GameBalda>[])
+        super(str as Sym<GameBalda>[], BoardBaldaParam.row, BoardBaldaParam.col)
+        for(let i = 10; i<15; i++){    
+            this.cells.splice(i, 0, this.cells[i].make(str[a] as string)) 
+            a++
+        }
     }
+
     clone(): BoardBalda {
         // TODO
         // Функция должна вернуть копию объекта
         // Если init, то дополнительно инициализируются
         //  статические поля класса
-        return this
+        let newBoard = new BoardBalda()//клонирование игры
+        for(let i=0; i<this.cells.length; i++){//по-другому не получается
+            newBoard.cells[i] = this.cells[i]
+        }
+        return newBoard
     }
 }
 
