@@ -119,8 +119,8 @@ export class Site {
     keys(): string[] {
         // TODO
         // вовзращает список ключей игр из массива Games
-        //forKeys.push(this.games[i].key)
-        //i++
+        forKeys.push(this.games[i].key)
+        i++
         return forKeys
     }
 }

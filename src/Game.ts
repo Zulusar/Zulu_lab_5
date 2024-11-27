@@ -33,7 +33,7 @@ export class Game<T extends GameType> {
     get state(): State<T> {
         // TODO
         // Сеттер должен возвращать текущее состояние игры
-        return this.steps[0]
+        return this.steps[this.current]
     }
 
     clone(): Game<T> {
@@ -78,7 +78,7 @@ export class Game<T extends GameType> {
             return false
         }
         else {
-            this.steps[0] = this.steps[step].clone()
+            this.steps[this.current] = this.steps[step].clone()
             if(step % 2 != 0) this.input.move()//подбор нужного символа в зависимости от step
             GameVC.draw()
             this.current == step //переписывание счетчика

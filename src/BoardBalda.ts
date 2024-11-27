@@ -15,7 +15,7 @@ export class BoardBalda extends Board<GameBalda> {
         //  статические поля класса
         super(str as Sym<GameBalda>[], BoardBaldaParam.row, BoardBaldaParam.col)
         for(let i = 10; i<15; i++){    
-            this.cells.splice(i, 0, this.cells[i].make(str[a] as string)) 
+            this.cells[i] = this.cells[i].make(str[a] as string)
             a++
         }
     }

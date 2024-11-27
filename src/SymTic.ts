@@ -7,14 +7,14 @@ export class SymTic extends Sym<GameTic> {
         // Вызыват checkSym родителя и 
         //  дополнительно проверяет на то, 
         //  что символ один из _X0
-        
-        super.checkSym(sym)
-        if(sym != "_"){
-            super.checkSym(sym) == false
-            return false
+        let result = true
+        try{
+            super.checkSym(sym)
         }
-        else return true
-            //return true
+        catch(SymError) {
+            return result = false
+        }
+        return result
     }
 
 }

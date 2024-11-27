@@ -9,6 +9,12 @@ export class Sym<T extends GameType> {
         // Вызывает checkSym (которая будет перегружана в наследниках)
         // Если checkSym возвращает false, выбрасывает исключение SymError
         this.field = sym
+        try{
+            this.checkSym(this.sym)
+        }
+        catch(SymError){
+            this.checkSym(this.sym) == false
+        }
     }
 
     make(sym: string): Sym<T> {
